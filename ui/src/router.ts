@@ -13,17 +13,28 @@ export default new Router({
         {
           path: '',
           name: 'notes',
-          component: () => import('@/views/Notes.vue')
+          component: () => import('@/views/Notes.vue'),
+          meta: {
+            topLevel: true
+          }
         },
         {
-          path: '/new',
+          path: 'new',
           name: 'new_note',
-          component: () => import('@/views/NewNote.vue')
+          component: () => import('@/views/NewNote.vue'),
+          meta: {
+            topLevel: false,
+            toolbarLabel: 'Create new note'
+          }
         },
         {
-          path: '/edit/:id',
+          path: 'edit/:id',
           name: 'edit_note',
-          component: () => import('@/views/EditNote.vue')
+          component: () => import('@/views/EditNote.vue'),
+          meta: {
+            topLevel: false,
+            toolbarLabel: 'Edit new note'
+          }
         }
       ]
     }

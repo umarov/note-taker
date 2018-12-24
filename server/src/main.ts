@@ -8,7 +8,7 @@ async function bootstrap() {
   app.register(helmet);
 
   app.enableCors({
-    origin: 'http://localhost:8080',
+    origin: ['http://localhost:8080', 'http://192.168.1.121:8080'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 204

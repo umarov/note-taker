@@ -1,8 +1,17 @@
 <template>
   <v-app>
-    <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
+    <v-toolbar app color="primary" dark v-if="isTopLevel">
+      <v-toolbar-title class="headline">
         <span class="font-weight-light">Note Taker</span>
+      </v-toolbar-title>
+    </v-toolbar>
+    <v-toolbar app color="primary darken-1" dark v-else-if="toolbarLabel">
+      <v-btn icon @click="goBack">
+        <v-icon>arrow_back</v-icon>
+      </v-btn>
+
+      <v-toolbar-title>
+        {{toolbarLabel}}
       </v-toolbar-title>
     </v-toolbar>
 
@@ -16,9 +25,17 @@
 
 export default {
   name: 'App',
-  data () {
-    return {
-      //
+  computed: {
+    isTopLevel () {
+      return this.$route.meta.topLevel
+    },
+    toolbarLabel () {
+      return this.$route.meta.toolbarLabel
+    }
+  },
+  methods: {
+    goBack () {
+      window.history.back()
     }
   }
 }

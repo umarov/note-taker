@@ -8,7 +8,7 @@ async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule, new core_1.FastifyAdapter());
     app.register(helmet);
     app.enableCors({
-        origin: 'http://localhost:8080',
+        origin: ['http://localhost:8080', 'http://192.168.1.121:8080'],
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
         preflightContinue: false,
         optionsSuccessStatus: 204

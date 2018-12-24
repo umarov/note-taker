@@ -29,7 +29,7 @@ export class NotesController {
   }
 
   @Delete(':id')
-  public delete(@Param(':id') id: number) {
+  public delete(@Param('id') id: number) {
     return this.notesService.deleteNote(id);
   }
 }

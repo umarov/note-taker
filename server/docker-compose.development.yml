@@ -1,0 +1,20 @@
+version: "3.2"
+services:
+  app:
+    build: .
+    volumes:
+      - type: bind
+        source: .
+        target: /usr/src/app
+    depends_on:
+      - postgres
+    ports:
+      - "${NODE_PORT}:${NODE_PORT}"
+    environment:
+      CONTAINERIZED: "true"
+  postgres:
+    image: postgres:11-alpine
+    environment:
+      POSTGRES_DB: "${PG_DB}"
+      POSTGRES_USER: "${PG_DB_USER}"
+      POSTGRES_PASSWORD: "${PG_DB_PASSWORD}"
