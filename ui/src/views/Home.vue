@@ -1,6 +1,12 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <h1>Welcome to Your Vue.js App</h1>
-  </div>
+  <v-container>
+    <router-view />
+  </v-container>
 </template>
+
+<script lang="ts">
+  import Vue from "vue";
+  export default Vue.extend({
+
+  });
+</script>

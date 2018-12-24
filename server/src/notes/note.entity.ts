@@ -1,18 +1,22 @@
-
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
 export class Note {
   @PrimaryGeneratedColumn()
-  id: number;
+  public id: number;
 
-  @Column({ length: 500 })
-  title: string;
+  @Column('varchar')
+  public title: string;
 
-  @Column('text')
-  content: string;
+  @Column('varchar', { nullable: true })
+  public content: string;
 
-  @Column('int')
-  views: number;
+  @Column('int', { nullable: true })
+  public views: number;
 
+  @CreateDateColumn()
+  public createdAt: Date;
+
+  @UpdateDateColumn()
+  public updatedAt: Date;
 }
