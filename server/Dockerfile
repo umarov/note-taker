@@ -10,6 +10,7 @@ RUN yarn install --silent && mv node_modules ../
 
 COPY . .
 
+EXPOSE 9229
 EXPOSE 3000
 
 RUN chmod u+x ./scripts/start.sh

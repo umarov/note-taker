@@ -2,7 +2,7 @@
 
 ## Server
 
-#### Install dependencies
+### Install dependencies
 
 ```shell
 cd server
@@ -14,9 +14,15 @@ You have two way to setup the server.
 1. Use docker
 2. Use local postgres and manually start the server
 
-#### Docker
+### Docker
 
 Make sure `docker` and `docker-compose` are installed.
+
+Setup local environment variables
+
+```shell
+cp .env.example .env
+```
 
 To build the containers
 
@@ -39,7 +45,7 @@ If you want to create migrations, follow along and setup Postgres locally.
 
 #### Using local Postgres
 
-####  Setup the database
+#### Setup the database
 
 Make sure to have Postgres installed
 

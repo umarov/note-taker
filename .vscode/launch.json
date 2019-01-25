@@ -12,5 +12,18 @@
       "restart": true,
       "protocol": "inspector",
     },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Attach to Docker",
+      "port": 9229,
+      "address": "0.0.0.0",
+      "restart": true,
+      "localRoot": "${workspaceFolder}",
+      "remoteRoot": "/usr/src/app",
+      "skipFiles": [
+        "<node_internals>/**/*.js",
+      ]
+    }
   ]
 }

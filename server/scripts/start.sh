@@ -8,5 +8,5 @@ if [ "$NODE_ENV" = "production" ]
 then
   yarn run start:prod
 else
-  yarn run start:dev
+  yarn run start:debug
 fi
