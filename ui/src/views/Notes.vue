@@ -67,7 +67,7 @@
 
           <v-list two-line v-else>
             <v-list-tile>
-              <v-list-tile-content @click="goToEdit(note.id)">
+              <v-list-tile-content>
                 <v-list-tile-title>No notes have been created yet.</v-list-tile-title>
                 <v-list-tile-sub-title><strong>Click the + icon above to create one</strong></v-list-tile-sub-title>
               </v-list-tile-content>
