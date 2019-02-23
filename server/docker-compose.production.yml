@@ -9,8 +9,8 @@ services:
     ports:
       - "${NODE_PORT}:${NODE_PORT}"
     environment:
-      CONTAINERIZED: "true"
       NODE_ENV: "production"
+      PG_DB_HOST: "postgres"
   postgres:
     image: postgres:11-alpine
     env_file:

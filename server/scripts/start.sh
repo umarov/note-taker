@@ -1,8 +1,6 @@
 #!/bin/sh
 
-yarn run prestart:prod
-yarn run build
-yarn run migrations
+yarn run db:setup
 
 if [ "$NODE_ENV" = "production" ]
 then
