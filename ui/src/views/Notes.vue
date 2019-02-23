@@ -100,7 +100,7 @@
         }
       },
       formatTime (updatedAt: Date) {
-        return formatDistance(subHours(updatedAt, 0), new Date())
+        return formatDistance(subHours(new Date(updatedAt), 0), new Date())
       },
       goToEdit(id: number) {
         this.$router.push(`edit/${id}`);
