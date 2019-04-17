@@ -4,9 +4,7 @@
       row
       wrap>
       <v-flex
-        xs12
-        sm6
-        offset-sm3>
+        xs12>
         <v-card>
           <v-toolbar
             color="primary darken-1"
@@ -34,11 +32,11 @@
               <v-list-tile
                 :key="note.id"
                 avatar>
-                <v-list-tile-avatar @click="goToEdit(note.id)">
+                <v-list-tile-avatar @click="goToShow(note.id)">
                   <img :src="`https://picsum.photos/200/200/?image=${note.id}`">
                 </v-list-tile-avatar>
 
-                <v-list-tile-content @click="goToEdit(note.id)">
+                <v-list-tile-content @click="goToShow(note.id)">
                   <v-list-tile-title>{{note.title}}</v-list-tile-title>
                   <v-list-tile-sub-title><strong>{{ formatTime(note.updatedAt) }} ago</strong></v-list-tile-sub-title>
                   <v-list-tile-sub-title>{{note.content}}</v-list-tile-sub-title>
@@ -102,8 +100,8 @@
       formatTime (updatedAt: Date) {
         return formatDistance(subHours(new Date(updatedAt), 0), new Date())
       },
-      goToEdit(id: number) {
-        this.$router.push(`edit/${id}`);
+      goToShow(id: number) {
+        this.$router.push(`/notes/${id}`);
       },
       goToNewNote() {
         this.$router.push("/new");

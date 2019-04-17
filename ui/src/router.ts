@@ -7,7 +7,7 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/notes',
       component: Home,
       children: [
         {
@@ -35,8 +35,18 @@ export default new Router({
             topLevel: false,
             toolbarLabel: 'Edit new note'
           }
+        },
+        {
+          path: ':id',
+          name: 'show_note',
+          component: () => import('@/views/Note.vue'),
+          meta: {
+            topLevel: false,
+            toolbarLabel: 'View note'
+          }
         }
       ]
-    }
+    },
+    { path: '*', redirect: '/notes' }
   ],
 });

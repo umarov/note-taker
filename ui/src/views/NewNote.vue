@@ -14,6 +14,11 @@
           v-model="note.content"
         ></v-textarea>
 
+        <v-checkbox
+          v-model="note.markdown"
+          label="Allow spaces"
+        ></v-checkbox>
+
         <div>
           <v-btn
             depressed
@@ -34,7 +39,8 @@
       return {
         note: {
           title: '',
-          content: ''
+          content: '',
+          markdown: false
         }
       };
     },
