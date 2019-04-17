@@ -1,7 +1,6 @@
 import {
   Injectable,
   HttpException,
-  HttpCode,
   HttpStatus,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';

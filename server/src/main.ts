@@ -1,14 +1,24 @@
 import '../scripts/env.js';
-import { NestFactory, FastifyAdapter } from '@nestjs/core';
+import { NestFactory } from '@nestjs/core';
+import {
+  FastifyAdapter,
+  NestFastifyApplication
+} from '@nestjs/platform-fastify';
 import * as helmet from 'fastify-helmet';
-import { Logger } from '@nestjs/common';
 
 import { AppModule } from './app.module';
+import { PinoLoggerService, logger } from './shared/pino-logger.service';
 
 const origin = process.env.NODE_ENV === 'development' ? '*' : [];
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, new FastifyAdapter());
+  const fastifyAdapter = new FastifyAdapter({ logger });
+
+  const app = await NestFactory.create<NestFastifyApplication>(
+    AppModule,
+    fastifyAdapter,
+    { logger: new PinoLoggerService() }
+  );
   app.register(helmet);
 
   app.enableCors({
@@ -22,9 +32,9 @@ async function bootstrap() {
 }
 
 bootstrap().catch((err: Error) => {
-  console.log(err.message, err.stack);
+  logger.error(err.message, err.stack);
 });
 
 process.on('uncaughtException', (err) => {
-  Logger.error(`There was an uncaught exception\n${err}`);
+  logger.error(`There was an uncaught exception\n${err}`);
 });

@@ -40,11 +40,12 @@
       "port": 9229,
       "address": "0.0.0.0",
       "restart": true,
-      "localRoot": "${workspaceFolder}",
-      "remoteRoot": "/usr/src/app",
       "skipFiles": [
         "<node_internals>/**/*.js",
-      ]
+      ],
+      "sourceMapPathOverrides": {
+        "/usr/src/app/*": "${workspaceRoot}/*"
+      }
     }
   ]
 }
