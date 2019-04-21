@@ -8,7 +8,7 @@
           </v-card-title>
 
           <v-card-text>
-            <p v-html="note.content"></p>
+            <markdown-container :markdown-value="note.content" />
           </v-card-text>
         </v-card>
         <v-btn large color="primary" @click="editNote">Edit</v-btn>
@@ -20,8 +20,10 @@
 <script lang="ts">
 import Vue from "vue";
 
-import "highlight.js/styles/dracula.css";
 export default Vue.extend({
+  components: {
+    MarkdownContainer: () => import('../components/MarkdownContainer/MarkdownContainer.vue')
+  },
   data() {
     return {
       note: {
@@ -37,37 +39,6 @@ export default Vue.extend({
     }
   },
   async created() {
-    const [{ default: MarkdownIt }, { default: hljs }] = await Promise.all([
-      import("markdown-it"),
-      import("highlight.js")
-    ]);
-
-    // @ts-ignore
-    const md = new MarkdownIt({
-      html: true,
-      linkify: true,
-      typographer: true,
-      breaks: true,
-      highlight: function(str, lang) {
-
-        if (lang && hljs.getLanguage(lang)) {
-          try {
-            return (
-              '<pre class="hljs"><code>' +
-              hljs.highlight(lang, str, true).value +
-              "</code></pre>"
-            );
-          } catch (__) {}
-        }
-
-        return (
-          '<pre class="hljs"><code>' +
-          md.utils.escapeHtml(str) +
-          "</code></pre>"
-        );
-      }
-    });
-
     const note = await fetch(
       `http://localhost:3000/notes/${this.$route.params.id}`
     ).then(res => res.json());
@@ -77,24 +48,10 @@ export default Vue.extend({
     }
 
     this.note = {
-      ...note,
-      content: md.render(note.content)
+      ...note
     };
   }
 });
 </script>
-
-<style lang="scss">
-code {
-  padding: 1rem;
-  box-shadow: none;
-  width: 100%;
-  background: none;
-}
-
-code:before {
-  content: none;
-}
-</style>
 
 
